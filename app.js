@@ -55,6 +55,7 @@ app.get("/", function(req, res){
     res.render("home");
   });
 
+
   app.get("/login", function(req, res){
     res.render("login");
   });
@@ -69,9 +70,10 @@ app.get("/", function(req, res){
   });
 
 
-  app.get("/secrets", function(req, res){
+  app.get("/index", function(req, res){
       if(req.isAuthenticated()){
-          res.render("secrets");
+        console.log(req.body.username);
+          res.render("index");
       }
       else{
           res.redirect("/login");
@@ -105,7 +107,7 @@ console.log(userdetails);
       } else {
         passport.authenticate("local")(req, res, function(){
           userdetails.save();
-          res.redirect("/secrets");
+          res.redirect("/index");
         });
       }
     });
@@ -124,7 +126,7 @@ console.log(userdetails);
         console.log(err);
       } else {
         passport.authenticate("local")(req, res, function(){
-          res.redirect("/secrets");
+          res.redirect("/index");
         });
       }
     });
