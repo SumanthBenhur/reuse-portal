@@ -72,8 +72,13 @@ app.get("/", function(req, res){
 
   app.get("/index", function(req, res){
       if(req.isAuthenticated()){
-        console.log(req.body.username);
-          res.render("index");
+        //console.log(req.user.username);
+        Info.findOne({email : req.user.username}, function(err, result){
+          if(err) console.log(err);
+          else console.log(result);
+          res.render("index", {name: result.name});
+        })
+          
       }
       else{
           res.redirect("/login");
@@ -105,7 +110,7 @@ console.log(userdetails);
         res.redirect("/register");
         
       } else {
-        passport.authenticate("local")(req, res, function(){
+        passport.authenticate("local", {failureFlash : true})(req, res, function(){
           userdetails.save();
           res.redirect("/index");
         });
@@ -131,6 +136,11 @@ console.log(userdetails);
       }
     });
   
+  });
+
+  app.get('/logout', function(req, res){
+    req.logout();
+    res.redirect('/');
   });
   
   app.listen(3000, function() {
