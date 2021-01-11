@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 const session = require('express-session');
 const passport = require("passport");
 const passportLocalMongoose = require("passport-local-mongoose");
+const multer =require("multer");
+const path=require("path");
 
 const app = express();
 
@@ -41,10 +43,18 @@ const userSchema = new mongoose.Schema ({
     walink:String    
    });
 
+   const products =new mongoose.Schema( {
+       nop:String,
+       email:String,
+       img:String,
+       dop:String
+   });
+
 userSchema.plugin(passportLocalMongoose);
 
 const User = new mongoose.model("User", userSchema);
 const Info = new mongoose.model("Info",infoschema);
+const product = new mongoose.model("product",products);
 
 passport.use(User.createStrategy());
 
@@ -83,6 +93,14 @@ app.get("/", function(req, res){
       else{
           res.redirect("/login");
       }
+  });
+  app.get("/add", function(req, res){
+    if(req.isAuthenticated()){
+    res.render("add");
+    }else{
+      res.redirect("/login");
+    }
+    
   });
 
   app.post("/register", function(req, res){
@@ -142,6 +160,33 @@ console.log(userdetails);
     req.logout();
     res.redirect('/');
   });
+  var storage = multer.diskStorage({
+    destination:"./public/uploads/",
+    filename:(req,file,cb)=>{cb(null,file.fieldname+"_"+Date.now()+path.extname(file.originalname));
+  }
+
+  });
+
+  var upload=multer({
+    storage:storage
+  }).single('img');
+
+  app.post("/add",upload,function(req,res,next) {
+    var sucess= req.file.filename +" uploaded successfully";
+    
+   
+    res.render("add",{sucess:sucess});   
+
+    var item=new product({
+      nop:req.body.nop,
+      img:req.file.filename,
+      email: req.user.username,
+      dop:req.body.dop 
+    });
+    item.save();
+  });
+
+  
   
   app.listen(3000, function() {
     console.log("Server started on port 3000.");
