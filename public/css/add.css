@@ -1,6 +1,6 @@
 .container{
     width: 360px;
-    height: 500px; 
+    height: 600px; 
     margin: 6% auto;
     border-radius: 7px;
     background-color: white;
@@ -53,3 +53,5 @@ input{
         
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+
+    

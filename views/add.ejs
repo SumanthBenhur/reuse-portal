@@ -12,24 +12,24 @@
     
     <div class="container" >
         <h1>ADD PRODUCTS</h1>
+
     <form  name="form1" action="/add"  method="POST" onload="funblur();" enctype="multipart/form-data">
         <label for="nop">Name of the product</label>
         <input type="text" class="form-control" name="nop" id="nop" onblur="validate_nop();" >
-        <div class="btn-group">
-            <button type="button" id =drop class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Right-aligned menu
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-              <button class="dropdown-item" type="button">Furniture</button>
-              <button class="dropdown-item" type="button">Stationary</button>
-              <button class="dropdown-item" type="button">Books and Resources</button>
-            </div>
-          </div>
+        <select class="selectpicker dropdown show" data-style="btn-info" name="selectpicker" id="category">
+            <optgroup class=" btn btn-secondary dropdown-toggle" label="Select category">
+              
+              <option class="dropdown-item" name="table1" value="Furniture">Furniture</option>
+              <option class="dropdown-item" name="table2" value="Stationary">Stationary</option>
+              <option class="dropdown-item" name="table3" value="Books">Books and Resources</option>
+            </optgroup>
+        </select>
+        <br><br>
         
         <label for="img">Select image:</label>
         <input type="file" id="img" name="img" accept="image/*">
         <label for="dop">Description of the product</label>
-        <textarea type="text" class="form-control" name="dop" id="dop" cols="35" rows="8"></textarea>
+        <textarea type="text" class="form-control" name="dop" id="dop" cols="35" rows="5"></textarea>
       
         <input type="submit" class="form-control" name="submit" id="submit" onsubmit="fun();">
     </form>
