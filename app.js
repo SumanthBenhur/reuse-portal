@@ -47,7 +47,11 @@ const userSchema = new mongoose.Schema ({
        nop:String,
        email:String,
        img:String,
-       dop:String
+       dop:String,
+       category:String,
+       walink:String,
+       pno:Number
+
    });
 
 userSchema.plugin(passportLocalMongoose);
@@ -79,6 +83,73 @@ app.get("/", function(req, res){
     res.render("register");
   });
 
+  app.get("/display",function(req,res){
+     
+     product.find( {} ,function(err, founditems){
+      console.log(founditems);
+      res.render("display", { variable: founditems});
+    });  
+        
+  });
+
+
+  app.get("/furniture",function(req,res){
+    if(req.isAuthenticated()){  
+    product.find( {category:{$eq:'furniture'}} ,function(err, foundfur){
+     console.log(foundfur);
+     Info.findOne({email : req.user.username}, function(err, result){
+      if(err) console.log(err);
+      else console.log(result);
+      res.render("furniture", { name:result.name,variable: foundfur});
+    });
+     
+   });  
+  }
+  else{
+    res.redirect("/login");
+  }
+       
+ });
+
+ app.get("/stationary",function(req,res){
+  if(req.isAuthenticated()){  
+  product.find( {category:{$eq:'Stationary'}} ,function(err, foundfur){
+   console.log(foundfur);
+   Info.findOne({email : req.user.username}, function(err, result){
+    if(err) console.log(err);
+    else console.log(result);
+    res.render("stationary", { name:result.name,variable: foundfur});
+  });
+   
+ });
+ }
+ else{
+  res.redirect("/login");
+ } 
+     
+});
+
+app.get("/books",function(req,res){
+  if(req.isAuthenticated()){   
+  product.find( {category:{$eq:'Books'}} ,function(err, foundfur){
+   console.log(foundfur);
+   Info.findOne({email : req.user.username}, function(err, result){
+    if(err) console.log(err);
+    else console.log(result);
+    res.render("books", { name:result.name,variable: foundfur});
+  });
+  
+   
+ });  
+
+
+  }
+  else{
+    res.redirect("/login");
+  }
+     
+});
+
 
   app.get("/index", function(req, res){
       if(req.isAuthenticated()){
@@ -87,7 +158,9 @@ app.get("/", function(req, res){
           if(err) console.log(err);
           else console.log(result);
           res.render("index", {name: result.name});
-        })
+        });
+       
+       
           
       }
       else{
@@ -190,17 +263,32 @@ console.log(userdetails);
 
   app.post("/add",upload,function(req,res,next) {
     var sucess= req.file.filename +" uploaded successfully";
-    
+    var walink;
+    var pno;
+    Info.findOne({email : req.user.username}, function(err, result){
+      if(err) console.log(err);
+      else 
+      {
+       walink=result.walink;
+       pno=result.phone;
+       console.log(pno);
+       console.log(walink);
+      }
+      var item=new product({
+        nop:req.body.nop,
+        img:req.file.filename,
+        email: req.user.username,
+        dop:req.body.dop ,
+        category:req.body.selectpicker,
+        walink:result.walink,
+        pno:result.phone
+      });
+      item.save();
+    });
    
     res.render("add",{sucess:sucess});   
 
-    var item=new product({
-      nop:req.body.nop,
-      img:req.file.filename,
-      email: req.user.username,
-      dop:req.body.dop 
-    });
-    item.save();
+    
   });
 
   
