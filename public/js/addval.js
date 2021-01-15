@@ -18,3 +18,9 @@ function funblur(){
 function fun(){ 
     document.getElementById("form1").reset();
     } 
+
+    document.querySelector('.custom-file-input').addEventListener('change',function(e){
+        var fileName = document.getElementById("img").files[0].name;
+        var nextSibling = e.target.nextElementSibling
+        nextSibling.innerText = fileName
+      })

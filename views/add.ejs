@@ -5,35 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/add.css">
-    <title>add</title>
+    <!-- <link rel="stylesheet" href="css/add.css"> -->
+    <title>ADD</title>
 </head>
 <body>
-    
-    <div class="container" >
-        <h1>ADD PRODUCTS</h1>
-    <form  name="form1" action="/add"  method="POST" onload="funblur();" enctype="multipart/form-data">
-        <label for="nop">Name of the product</label>
-        <input type="text" class="form-control" name="nop" id="nop" onblur="validate_nop();" >
-        <div class="btn-group">
-            <button type="button" id =drop class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Right-aligned menu
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-              <button class="dropdown-item" type="button">Furniture</button>
-              <button class="dropdown-item" type="button">Stationary</button>
-              <button class="dropdown-item" type="button">Books and Resources</button>
-            </div>
+  <%- include('partials/header') %>
+  <div class="container mt-5">
+    <h1>ADD PRODUCT</h1>
+  
+    <div class="row">
+      <div class="col-sm-8">
+        <div class="card">
+          <div class="card-body">
+  
+            <!-- Makes POST request to /login route -->
+            <form name="form1" action="/add"  method="POST" onload="funblur();" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="nop">Product Name</label>
+                <input type="text" class="form-control" name="nop" id="nop" onblur="validate_nop();">
+              </div>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text">Upload</span>
+                </div>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="img" name="img" type="file" accept="image/*">
+                  <label class="custom-file-label" for="img">Choose file</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="dop">Product Description</label>
+                <textarea type="text" class="form-control" id="dop" name="dop" rows="6"></textarea>
+              </div>
+              <button type="submit" class="btn btn-dark" name="submit" id="submit" onsubmit="fun();">ADD</button>
+            </form>
+  
           </div>
-        
-        <label for="img">Select image:</label>
-        <input type="file" id="img" name="img" accept="image/*">
-        <label for="dop">Description of the product</label>
-        <textarea type="text" class="form-control" name="dop" id="dop" cols="35" rows="8"></textarea>
-      
-        <input type="submit" class="form-control" name="submit" id="submit" onsubmit="fun();">
-    </form>
-</div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+
 <script src="js/addval.js"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

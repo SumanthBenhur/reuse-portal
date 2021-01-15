@@ -103,6 +103,23 @@ app.get("/", function(req, res){
     
   });
 
+
+  app.get("/profile", function(req, res){
+    if(req.isAuthenticated()){
+      //console.log(req.user.username);
+      Info.findOne({email : req.user.username}, function(err, result){
+        if(err) console.log(err);
+        else 
+        res.render("profile", {name: result.name, email: result.email, phone : result.phone, prn: result.prn, walink: result.walink});
+      })
+        
+    }
+    else{
+        res.redirect("/login");
+    }
+  });
+
+
   app.post("/register", function(req, res){
 
 const name = req.body.name;
@@ -194,3 +211,5 @@ console.log(userdetails);
 
 
 
+
+  
