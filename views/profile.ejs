@@ -2,6 +2,7 @@
 <%- include('partials/navbar') %> 
 
 <link rel="stylesheet" href="css/profile.css">
+<link rel="stylesheet" href="css/display.css">
 <div class="page-content page-container" id="page-content">
     <div class="padding">
         <div class="row container d-flex justify-content-center">
@@ -78,8 +79,8 @@
               Contact-no:<%= variable[i].pno %> <br>            
               email: <%= variable[i].email %> <br>
           </p>
-            <a href="<%=variable[i].walink  %> " class="btn btn-primary">Contact</a>
-           
+          <a href="/update/<%=variable[i]._id %> " class="btn btn-primary">UPDATE</a>
+          <a href="/delete/<%=variable[i]._id %> " class="btn btn-primary">DELETE</a>
             
 
           </div>
@@ -91,3 +92,6 @@
      
     </div> 
   </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

@@ -93,7 +93,7 @@ app.get("/", function(req, res){
   app.get("/furniture",function(req,res){
     if(req.isAuthenticated()){  
     product.find( {category:{$eq:'Furniture'}} ,function(err, foundfur){
-     console.log(foundfur);
+    
      Info.findOne({email : req.user.username}, function(err, result){
       if(err) console.log(err);
       else console.log(result);
@@ -206,6 +206,29 @@ app.get("/product/:productId", function(req, res){
   });
 
 
+
+  app.get("/delete/:Id", function(req, res){
+    const requestedProductId = req.params.Id;
+    if(req.isAuthenticated()){ 
+    product.deleteOne({_id : requestedProductId}, function(err, post){
+      Info.findOne({email : req.user.username}, function(err, result){
+        if(err) console.log(err);
+        else console.log(result);
+        res.redirect("/profile");
+      });
+    });
+  }
+  else{
+    res.redirect("/login");
+}
+  });
+
+
+
+
+
+
+
   app.post("/register", function(req, res){
 
 const name = req.body.name;
@@ -300,6 +323,52 @@ console.log(userdetails);
     });
    
     res.redirect("index"); 
+
+    
+  });
+
+  app.get("/Update/:Id", function(req, res){
+    const requestedProductId = req.params.Id;
+    if(req.isAuthenticated())
+    {
+    
+      Info.findOne({email : req.user.username}, function(err, result){
+        if(err) console.log(err);
+        else 
+        product.findById(requestedProductId,function(err,product){
+          res.render("update",{
+            product:product,
+            name: result.name
+          });
+        });
+       
+      });    
+}
+  });
+
+  app.post("/update/:ID",function(req,res,next) {
+   
+   var nop=req.body.nop;
+
+   var dop=req.body.dop;
+   var category=req.body.category;
+   console.log(nop);
+   console.log(dop);
+   const requestedProductId = req.params.Id;
+    if(req.isAuthenticated()){ 
+    product.findOneAndUpdate({_id : requestedProductId},{ $set: {nop: req.body.nop, dop:req.body.dop,category:req.body.category } },{useFindAndModify: false}, function(err, post){
+      Info.findOne({email : req.user.username}, function(err, result){
+        if(err) console.log(err);
+        else console.log(result);
+        res.redirect("/profile");
+      });
+    });
+  }
+  else{
+    res.redirect("/login");
+}
+   
+    
 
     
   });
