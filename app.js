@@ -95,7 +95,7 @@ app.get("/", function(req, res){
 
   app.get("/furniture",function(req,res){
     if(req.isAuthenticated()){  
-    product.find( {category:{$eq:'furniture'}} ,function(err, foundfur){
+    product.find( {category:{$eq:'Furniture'}} ,function(err, foundfur){
      console.log(foundfur);
      Info.findOne({email : req.user.username}, function(err, result){
       if(err) console.log(err);
@@ -169,7 +169,12 @@ app.get("/books",function(req,res){
   });
   app.get("/add", function(req, res){
     if(req.isAuthenticated()){
-    res.render("add");
+    
+    Info.findOne({email : req.user.username}, function(err, result){
+      if(err) console.log(err);
+      else console.log(result);
+      res.render("add", {name: result.name});
+    });    
     }else{
       res.redirect("/login");
     }
@@ -286,7 +291,7 @@ console.log(userdetails);
       item.save();
     });
    
-    res.render("add",{sucess:sucess});   
+    res.redirect("index"); 
 
     
   });
