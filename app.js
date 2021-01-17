@@ -85,10 +85,7 @@ app.get("/", function(req, res){
 
   app.get("/display",function(req,res){
      
-     product.find( {} ,function(err, founditems){
-      console.log(founditems);
-      res.render("display", { variable: founditems});
-    });  
+      
         
   });
 
@@ -195,8 +192,11 @@ app.get("/product/:productId", function(req, res){
       //console.log(req.user.username);
       Info.findOne({email : req.user.username}, function(err, result){
         if(err) console.log(err);
-        else 
-        res.render("profile", {name: result.name, email: result.email, phone : result.phone, prn: result.prn, walink: result.walink});
+        else {
+        product.find( {email : req.user.username} ,function(err, founditems){
+          res.render("profile", { variable: founditems,name: result.name, email: result.email, phone : result.phone, prn: result.prn, walink: result.walink});
+        });
+        };
       })
         
     }
