@@ -327,7 +327,7 @@ console.log(userdetails);
     
   });
 
-  app.get("/Update/:Id", function(req, res){
+  app.get("/update/:Id", function(req, res){
     const requestedProductId = req.params.Id;
     if(req.isAuthenticated())
     {
@@ -346,17 +346,19 @@ console.log(userdetails);
 }
   });
 
-  app.post("/update/:ID",function(req,res,next) {
-   
-   var nop=req.body.nop;
+  app.post("/update/:Id",function(req,res) {
+    if(req.isAuthenticated()){
 
-   var dop=req.body.dop;
-   var category=req.body.category;
+  const requestedProductId = req.params.Id;
+  console.log(requestedProductId);
+   const nop=req.body.nop;
+   const dop=req.body.dop;
+   const category =req.body.category;
    console.log(nop);
    console.log(dop);
-   const requestedProductId = req.params.Id;
-    if(req.isAuthenticated()){ 
-    product.findOneAndUpdate({_id : requestedProductId},{ $set: {nop: req.body.nop, dop:req.body.dop,category:req.body.category } },{useFindAndModify: false}, function(err, post){
+  
+    
+    product.updateOne({_id : requestedProductId},{nop: req.body.nop, dop:req.body.dop,category:req.body.category}, function(err, post){
       Info.findOne({email : req.user.username}, function(err, result){
         if(err) console.log(err);
         else console.log(result);
