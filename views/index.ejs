@@ -1,0 +1,45 @@
+<%- include('partials/header') %>
+<%- include('partials/navbar') %> 
+<link rel="stylesheet" href="css/index.css">
+<!-- carousel part -->
+
+
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active carousel_part1">
+      <h1 class="d-block w-100" id="moto">We choose to reuse</h1>
+    </div>  
+    <div class="carousel-item" id="three">
+      <img id="imgpart3" src="carousel_img3.jpg" alt="">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+<!-- icons part -->
+<div class="container-fluid">
+  <div class="row" style="height: 350px;">
+    <div class="col-lg-4 col-md-4">
+      <img class="img-responsive center-block" src="easytouse.png" alt="Easy">
+      <p class="icontext">EASY TO USE</p>
+    </div>
+    <div class="col-lg-4 col-md-4">
+      <img class="img-responsive center-block" src="contact.png" alt="Contact">
+      <p class="icontext">CONTACT SELLER DIRECTLY</p>
+    </div>
+    <div class="col-lg-4 col-md-4">
+      <img class="img-responsive center-block" src="cheap.png" alt="Cheap">
+      <p class="icontext">LESS EXPENSIVE</p>
+    </div>
+  </div>
+</div>
+
+ 
+
+<%- include('partials/footer') %>
