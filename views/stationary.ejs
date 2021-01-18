@@ -14,18 +14,18 @@
             <div class="card " style="width: 100%; " >
               <img class="card-img-top" src="./uploads/<%= variable[i].img %>" alt="Card image cap">
               <div class="card-body">
-                <h5 class="card-title"><%= variable[i].nop %></h5>
+                <h4 class="card-title" style="text-transform: uppercase;"><%= variable[i].nop %></h4>
                 <p class="card-text">
                     
                  <p> 
-                     Description:<%= variable[i].dop.substring(0,100) + "...." %>               
+                     <b>Description :</b> <%= variable[i].dop.substring(0,100) + "...." %>               
                     
                  </p> <br>
-                  Contact-no:<%= variable[i].pno %> <br>            
-                  email: <%= variable[i].email %> <br>
+                  <b>Contact-no: </b> <%= variable[i].pno %> <br>            
+                  <b>E-mail: </b><%= variable[i].email %> <br>
               </p>
-                <a href="<%=variable[i].walink  %> " class="btn btn-primary">Contact</a>
-                <a href="/product/<%= variable[i]._id %>  " class="btn btn-primary">View Product</a>
+                <a href="<%=variable[i].walink  %> " class="btn btn-primary" style="margin: 5px 0;">Contact</a>
+                <a href="/product/<%= variable[i]._id %>  " class="btn btn-primary"style="margin: 5px 0;">View Product</a>
               </div>
             </div> 
         </div>
