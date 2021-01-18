@@ -150,11 +150,20 @@ app.get("/books",function(req,res){
 
 
 app.get("/product/:productId", function(req, res){
+  if(req.isAuthenticated()){
   const requestedProductId = req.params.productId;
-
-  product.findOne({_id : requestedProductId}, function(err, post){
-    res.render("product", {nop : post.nop, email : post.email, dop : post.dop, walink : post.walink, pno : post.pno, img : post.img});
+  
+  product.findOne({_id : requestedProductId}, function(error, post){
+    Info.findOne({email : req.user.username}, function(err, result){
+      if(err) console.log(err);
+      else console.log(result);
+    res.render("product", {nop : post.nop, email : post.email, dop : post.dop, walink : post.walink, pno : post.pno, img : post.img, name:result.name});
+    });
   });
+}
+else{
+  res.redirect("/login");
+}
 });
 
   app.get("/index", function(req, res){
