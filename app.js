@@ -328,6 +328,25 @@ console.log(userdetails);
     
   });
 
+  app.get("/update/:Id", function(req, res){
+    const requestedProductId = req.params.Id;
+    if(req.isAuthenticated())
+    {
+    
+      Info.findOne({email : req.user.username}, function(err, result){
+        if(err) console.log(err);
+        else 
+        product.findById(requestedProductId,function(err,product){
+          res.render("updateProduct",{
+            product:product,
+            name: result.name
+          });
+        });
+       
+      });    
+}
+  });
+
   app.post("/update/:Id",function(req,res) {
     if(req.isAuthenticated()){
 
