@@ -8,3 +8,8 @@
   img{
     height: 300px;
   }
+  .btn.btn-primary.green{
+    background-color: #339989 !important;
+   }
+   .btn.btn-primary.black{
+      background-color:  #131515 !important;}
