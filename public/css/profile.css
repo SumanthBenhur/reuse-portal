@@ -31,8 +31,8 @@
 }
 
 .bg-c-lite-green {
-    background: -webkit-gradient(linear, left top, right top, from(#f29263), to(#ee5a6f));
-    background: linear-gradient(to right, #ee5a6f, #f29263)
+    background: -webkit-gradient(linear, left top, right top, from(#7DE2D1), to(#339989));
+    background: linear-gradient(to right, #339989, #7DE2D1)
 }
 
 .user-profile {
@@ -148,4 +148,34 @@ h6 {
     margin: auto;
     background: white;
     border-radius: 5px;
+}
+
+.myProduct{
+    height: 300px;
+}
+
+#saveChanges{
+    visibility: hidden;
+}
+
+.btn.btn-primary.green{
+ background-color: #339989 !important;
+}
+.btn.btn-primary.black{
+   background-color:  #131515 !important;
+}
+.btn.btn-secondary.black{
+    background-color:  #131515 !important;
+ }
+
+h2{
+    margin-bottom: 70px;
+    letter-spacing: 3p;
+}
+
+#exampleModalLabel{
+    margin-left: 38%;
+}
+.card{
+    border-radius: 10px !important;
 }
