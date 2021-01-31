@@ -10,7 +10,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const multer =require("multer");
 const path=require("path");
 const { resolveSoa } = require("dns");
-const popup = require('popups');
+
 
 const app = express();
 //to connect js and css files in public
@@ -152,6 +152,15 @@ app.get("/books",function(req,res){
   }
      
 });
+
+
+
+
+
+
+
+
+
 
 //to send variables of particular productid to html 
 app.get("/product/:productId", function(req, res){
@@ -390,7 +399,7 @@ console.log(userdetails);
 //to update profile
   app.post("/updateProfile", function(req, res){
     if(req.isAuthenticated()){
-      console.log(req.body.name, req.body.phone, req.body.prn, req.body.walink );
+     
       Info.updateMany({email : req.user.username}, {$set: {name: req.body.name, phone: req.body.phone, prn : req.body.prn, walink: req.body.walink}}, {multi:true}, function(err, post){
         if(err) console.log(err);
         else res.redirect("/profile");
@@ -400,6 +409,31 @@ console.log(userdetails);
       res.redirect("/login");
     }
   });
+
+
+
+  //to display after search using name
+
+
+app.post("/search",function(req,res){
+  
+  if(req.isAuthenticated()){  
+   const string= req.body.nameofitem;
+  product.find( {nop:{ $regex:new RegExp(string) }} ,function(err, foundfur){
+  
+   Info.findOne({email : req.user.username}, function(err, result){
+    if(err) console.log(err);
+    else console.log(result);
+    res.render("search", { name:result.name,variable: foundfur});
+  });
+   
+ });  
+}
+else{
+  res.redirect("/login");
+}
+     
+});
 
   
   
