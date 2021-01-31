@@ -10,7 +10,7 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const multer =require("multer");
 const path=require("path");
 const { resolveSoa } = require("dns");
-
+let alert = require("alert");
 
 const app = express();
 //to connect js and css files in public
@@ -229,7 +229,7 @@ app.get("/product/:productId", function(req, res){
     product.deleteOne({_id : requestedProductId}, function(err, post){
       Info.findOne({email : req.user.username}, function(err, result){
         if(err) console.log(err);
-        else console.log(result);
+        else alert("Item Deleted");
         res.redirect("/profile");
       });
     });
@@ -265,10 +265,8 @@ console.log(userdetails);
 
     User.register({username: req.body.username}, req.body.password, function(err, user){
       if (err) {
-        console.log(err);
-        //alert("Email already taken");
-        res.redirect("/register");
-        
+        alert("E-mail already taken");
+        res.redirect("/register");        
         
       } else {
         
@@ -290,7 +288,7 @@ console.log(userdetails);
   
     req.login(user, function(err){
       if (err) {
-        console.log(err);
+        alert("Wrong user credentials")
       } else {
         passport.authenticate("local")(req, res, function(){
           res.redirect("/index");
@@ -342,7 +340,7 @@ console.log(userdetails);
       });
       item.save();
     });
-   
+   alert("Item added");
     res.redirect("index"); 
 
     
