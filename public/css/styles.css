@@ -1,5 +1,7 @@
 
-
+body{
+  font-family: 'Ubuntu', sans-serif;
+}
 .centered {
     padding-top: 200px;
     text-align: center;
