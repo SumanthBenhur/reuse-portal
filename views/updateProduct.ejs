@@ -1,0 +1,45 @@
+
+<%- include('partials/header') %>
+<%- include('partials/navbar') %> 
+<link rel="stylesheet" href="css/login.css">
+
+
+
+
+<div class="container mt-5">
+  <h1 id="loginheading" >UPDATE PRODUCT</h1>
+
+  <div class="row justify-content-center ">
+    <div class="col-sm-8">
+      <div class="card ">
+        <div class="card-body">
+
+          <!-- Makes POST request to /login route -->
+          <form name="form1" action="/update/<%=product._id %>"  method="POST" >
+            <div class="form-group">
+              <label for="nop">Product Name</label>
+              <input type="text" class="form-control" name="nop" id="nop" value="<%=product.nop %> ">
+            </div>
+            <select class=" form-group selectpicker dropdown show" data-style="btn-info" name="selectpicker" id="category" value="<%=product.category %> ">
+              <optgroup class=" btn btn-secondary dropdown-toggle" label="Select category">
+                <option class="dropdown-item" name="default"  value="<%=product.category %>" selected><%=product.category %></option>
+                <option class="dropdown-item" name="table1" value="Furniture">Furniture</option>
+                <option class="dropdown-item" name="table2" value="Stationary">Stationary</option>
+                <option class="dropdown-item" name="table3" value="Books">Books and Resources</option>
+              </optgroup>
+          </select>            
+              
+          
+            <div class="form-group">
+              <label for="dop">Product Description</label>
+              <textarea type="text" class="form-control" id="dop" name="dop" rows="6"><%=product.dop%></textarea>
+            </div>
+            <button type="submit" class="btn btn-dark" name="submit" id="submit" >UPDATE</button>
+          </form>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

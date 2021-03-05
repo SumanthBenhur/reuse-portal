@@ -1,0 +1,16 @@
+
+  .container-fluid {
+    grid-gap:10px 10px;
+    
+  }
+  .card-outer{
+    padding: 8px 3px;
+  }
+  img{
+    height: 300px;
+  }
+  .btn.btn-primary.green{
+    background-color: #339989 !important;
+   }
+   .btn.btn-primary.black{
+      background-color:  #131515 !important;}

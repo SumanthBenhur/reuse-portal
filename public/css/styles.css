@@ -1,0 +1,22 @@
+body{
+  font-family: 'Ubuntu', sans-serif;
+}
+
+.centered {
+    padding-top: 200px;
+    text-align: center;
+}
+
+.secret-text {
+  text-align: center;
+  font-size: 2rem;
+  color: #FFFAFB;
+  background-color: #131515;
+}
+.nav.justify-content-center.py-3.navbar-light.color{
+  background-color: #339989;
+}
+.btn.btn-dark.btn-lg{
+  background-color: black !important;
+}
+

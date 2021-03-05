@@ -1,0 +1,72 @@
+.carousel_part1{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../carosel_img1.jpg");
+    
+    height: 600px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    background-position-y: 2%;
+}
+
+
+#moto{
+    position: absolute;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+
+
+.stats{
+    height: 600px;
+}
+
+#stats-right{
+    text-align: center;
+    color: white;
+    background-color: black;
+    opacity: 0.5;
+}
+#three{
+    background-color: #363c4a;
+    height: 600px;
+}
+
+#imgpart3{
+    position: absolute;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+img.icons{
+    height: 12.5rem;
+}
+.icontext{
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 3.375rem;
+    font-size: x-large;
+    /* font: bold normal 30px Helvetica,sans-serif; */
+    line-height: 1.6;
+    color: #4a4a4a;
+    font-weight:bold;
+}
+
+
+img.center-block{
+    height: 10rem;
+    margin-top: 3.375rem;
+}
+.center-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+ }
